@@ -112,3 +112,6 @@ rm -f /usr/lib/sysusers.d/30-rpmostree-pkg-group-onepassword-cli.conf
 cat >/usr/lib/tmpfiles.d/eternal-onepassword.conf <<EOF
 L  /opt/1Password  -  -  -  -  /usr/lib/1Password
 EOF
+
+getent group onepassword
+getent group onepassword-cli
