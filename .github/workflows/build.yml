@@ -35,8 +35,8 @@ jobs:
           # List of flavours
           - name: bluefin-gts
             base: ghcr.io/ublue-os/bluefin-dx:gts
-          - name: bazzite
-            base: ghcr.io/ublue-os/bazzite:latest
+          - name: bazzite-gnome
+            base: ghcr.io/ublue-os/bazzite-gnome:latest
 
     permissions:
       contents: read
