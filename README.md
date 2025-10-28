@@ -1,3 +1,13 @@
+# README
+
+## Installing
+
+Currently, the registry is unverified, so you'll need to rebase using something similar to the following (replacing the container URL with the correct one from the package list).
+
+```sh
+sudo rpm-ostree rebase ostree-unverified-registry:ghcr.io/lkdm/phoenix-bluefin-gts:latest
+```
+
 # image-template
 
 This repository is meant to be a template for building your own custom [bootc](https://github.com/bootc-dev/bootc) image. This template is the recommended way to make customizations to any image published by the Universal Blue Project.
