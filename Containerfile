@@ -22,8 +22,6 @@ FROM ${BASE_IMAGE}
 
 ADD --chmod=0755 scripts/* /tmp/
 
-RUN chmod +x /tmp/1password.sh && /tmp/1password.sh
-
 RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
