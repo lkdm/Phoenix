@@ -9,4 +9,4 @@ dnf install -y ghostty
 if [ -f /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:scottames:ghostty.repo ]; then
     rm /etc/yum.repos.d/_copr:copr.fedorainfracloud.org:scottames:ghostty.repo
 fi
-sudo dnf clean all
+dnf clean all
