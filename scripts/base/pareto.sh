@@ -16,6 +16,3 @@ dnf install -y paretosecurity
 
 # Clean up the yum repo (updates are baked into new images)
 rm /etc/yum.repos.d/pareto.repo -f
-
-# Clean up
-dnf clean all
