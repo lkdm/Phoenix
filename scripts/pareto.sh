@@ -12,11 +12,10 @@ gpgcheck=1
 gpgkey=https://pkg.paretosecurity.com/paretosecurity.gpg
 EOF
 
-sudo dnf install -y paretosecurity
-
+dnf install -y paretosecurity
 
 # Clean up the yum repo (updates are baked into new images)
 rm /etc/yum.repos.d/pareto.repo -f
 
 # Clean up
-sudo dnf clean all
+dnf clean all
