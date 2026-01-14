@@ -16,7 +16,7 @@ set -ouex pipefail
 # dnf5 -y copr disable ublue-os/staging
 
 # this installs a package from fedora repos
-dnf5 install -y tmux 
+# dnf5 install -y tmux 
 
 # Replace all langpacks with just English to save ~230MB
 dnf swap -y glibc-all-langpacks glibc-langpack-en || true

@@ -22,10 +22,27 @@ EOF
 
 dnf install -y paretosecurity
 
-# Enable service on first boot via preset (bootc best practice)
-mkdir -p /usr/lib/systemd/system-preset
-cat << EOF > /usr/lib/systemd/system-preset/90-pareto.preset
-enable paretosecurity.service
+# Polkit policy for Pareto helper (Atomic workaround)
+# Adds 
+mkdir -p /usr/share/polkit-1/actions
+cat << 'EOF' > /usr/share/polkit-1/actions/com.paretosecurity.agent.policy
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+
+<policyconfig>
+  <action id="com.paretosecurity.agent.run-helper">
+    <description>Run Pareto Security privileged helper</description>
+    <message>Authentication is required to run Pareto Security system checks</message>
+    <defaults>
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+    <exec>/usr/bin/paretosecurity helper</exec>
+  </action>
+</policyconfig>
 EOF
 
 # Cleanup repo (updates baked into image)
@@ -36,3 +53,10 @@ if [ -e /usr/bin/systemctl.real ]; then
   rm -f /usr/bin/systemctl
   mv /usr/bin/systemctl.real /usr/bin/systemctl
 fi
+
+# Should show enabled:
+# systemctl is-enabled paretosecurity.socket
+#
+# Should show listening:
+# systemctl status paretosecurity.socket
+systemctl enable paretosecurity.socket
